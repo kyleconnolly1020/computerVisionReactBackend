@@ -7,9 +7,9 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-cap = cv2.VideoCapture(-1)
-
 def gen_frames():
+    cap = cv2.VideoCapture(0)
+
     while True:
         success, frame = cap.read()
         if not success:
