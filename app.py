@@ -10,7 +10,7 @@ CORS(app)
 
 
 def gen_frames():
-    cap = cv2.VideoCapture(0, cv2.CAP_V4L)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     while True:
         success, frame = cap.read()
         if not success:
@@ -20,6 +20,8 @@ def gen_frames():
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    cap.release()
+    cv2.destroyAllWindows()
 
 @app.route('/video_feed')
 def video_feed():
