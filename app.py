@@ -10,7 +10,7 @@ CORS(app)
 
 
 def gen_frames():
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L)
     while True:
         success, frame = cap.read()
         if not success:
@@ -27,7 +27,7 @@ def video_feed():
 
 @app.route('/capture')
 def getGolors(): 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L)
     _, frame = cap.read()
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     
