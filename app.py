@@ -7,9 +7,9 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-cap = cv2.VideoCapture(0)
 
 def gen_frames():
+    cap = cv2.VideoCapture(0)
     while True:
         success, frame = cap.read()
         if not success:
@@ -26,6 +26,7 @@ def video_feed():
 
 @app.route('/capture')
 def getGolors(): 
+    cap = cv2.VideoCapture(0)
     _, frame = cap.read()
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     
